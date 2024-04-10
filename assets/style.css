@@ -1,0 +1,226 @@
+
+*{
+   box-sizing: border-box;
+   font-family: 'poppins', sans-serif;
+}
+body{
+   margin: 0;
+   padding: 0;
+   height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: #000000;
+}
+h2{
+  margin: auto;
+  font-size: 300%;
+  font-weight: 100;
+  animation: lights 5s 750ms linear infinite;
+}
+.container{
+   width: 350px;
+   background-color: rgba(0,0,0,0.4);
+   border-radius: 5px;
+   padding: 20px;
+   text-align: center;
+}
+.container input{
+   width: 100%;
+   padding: 10px;
+   border: none;
+   border-bottom: 2px solid #777777;
+   margin-bottom: 20px;
+   font-size: 16px;
+   outline: none;
+}
+.background-clip{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+@keyframes lights {
+  0% {
+    color: hsl(230, 40%, 80%);
+    text-shadow:
+      0 0 1em hsla(320, 100%, 50%, 0.2),
+      0 0 0.125em hsla(320, 100%, 60%, 0.3),
+      -1em -0.125em 0.5em hsla(40, 100%, 60%, 0),
+      1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+  }
+  
+  30% { 
+    color: hsl(230, 80%, 90%);
+    text-shadow:
+      0 0 1em hsla(320, 100%, 50%, 0.5),
+      0 0 0.125em hsla(320, 100%, 60%, 0.5),
+      -0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2),
+      0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
+  }
+  
+  40% { 
+    color: hsl(230, 100%, 95%);
+    text-shadow:
+      0 0 1em hsla(320, 100%, 50%, 0.5),
+      0 0 0.125em hsla(320, 100%, 90%, 0.5),
+      -0.25em -0.125em 0.125em hsla(40, 100%, 60%, 0.2),
+      0.25em 0.125em 0.125em hsla(200, 100%, 60%, 0.4);
+  }
+  
+  70% {
+    color: hsl(230, 80%, 90%);
+    text-shadow:
+      0 0 1em hsla(320, 100%, 50%, 0.5),
+      0 0 0.125em hsla(320, 100%, 60%, 0.5),
+      0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2),
+      -0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
+  }
+  
+  100% {
+    color: hsl(230, 40%, 80%);
+    text-shadow:
+      0 0 1em hsla(320, 100%, 50%, 0.2),
+      0 0 0.125em hsla(320, 100%, 60%, 0.3),
+      1em -0.125em 0.5em hsla(40, 100%, 60%, 0),
+      -1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+  }
+  
+}
+
+
+
+:root {
+    /* 
+      One-stop magic hue shift
+      We're using oklch(), so these might not be the hue values you are familiar with 
+    See: https://oklch.com/
+    */
+    --hue: 310; /* change me (0-360) */
+    --hue-adjust: 135; /* and me */
+  
+    --hue-2: calc(var(--hue) + var(--hue-adjust));
+  
+    --page-background: oklch(10% 0.0666 var(--hue));
+  }
+  
+  button {
+    --button-background: oklch(20% 0.0666 var(--hue));
+    --text-base: oklch(45% 0.175 var(--hue));
+    --text-hover: oklch(95% 0.145 calc(var(--hue) + 30));
+  
+    --shadow-start: oklch(95% 0.145 var(--hue-2));
+    --shadow-end: oklch(60% 0.29 var(--hue));
+  
+    /* No color function, so we can use different opacity values */
+    --shadow-inner: 60% 0.29 var(--hue);
+  
+    all: unset;
+  
+    /* Text */
+    color: var(--text-base);
+    font: 700 1.125rem/1.2 Raleway, sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+  
+    /* Button sizing */
+    padding: 0.85em;
+    max-width: 100%;
+    width: 12em;
+  
+    /* Button styling */
+    background-color: var(--button-background);
+    background-clip: padding-box;
+    border: 5px solid var(--text-base);
+    border-radius: 2em;
+    cursor: pointer;
+  
+    /* Effects */
+    position: relative;
+    transition: 0.25s ease-out;
+  
+    /* Set up pseudo elements */
+    &::before,
+    &::after {
+      content: "";
+      border-radius: inherit;
+      transition: inherit;
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+  
+    /* Gradient shadow */
+    &::before {
+      /* Position */
+      inset: -0.2em;
+      z-index: -1;
+  
+      /* Effect */
+      background: linear-gradient(var(--shadow-start), var(--shadow-end));
+      filter: blur(1.2em) saturate(1.2);
+  
+      /* Animation */
+      transform-origin: bottom;
+      transform: scaleY(0.5);
+      opacity: 0;
+    }
+  
+    /* Semi-transparent blended box-shadow brightens up the border */
+    &::after {
+      /* Effect */
+      box-shadow: inset 0 0 0 1px #fff, /* inner pixel */
+        0 0 0 4px hsla(0deg, 0%, 100%, 0.5), /* lightened border */
+        1px 1px 0 4px #fff; /* outer pixel */
+      mix-blend-mode: overlay;
+  
+      /* Animation */
+      opacity: 0;
+    }
+  
+    &:hover,
+    &:focus {
+      color: var(--text-hover);
+  
+      /*  Lighten border */
+      border-color: transparent;
+  
+      /* Inner shadow */
+      box-shadow:
+        inset 0 1.4em 0 oklch(var(--shadow-inner) / 0.1), /* gloss */
+        inset 0 0 1.4em oklch(var(--shadow-inner) / 0.32), /* inner glow */
+        0 1px 1px oklch(var(--shadow-inner) / 0.32); /* bottom line */
+  
+      /* Show effects */
+      &::before,
+      &::after {
+        transform: none;
+        opacity: 1;
+      }
+    }
+  }
+  
+  /* Page styling, ignore */
+  body {
+    background: var(--page-background);
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+@media (min-aspect-ratio:16/9){
+    .background-clip{
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-aspect-ratio:16/9){
+    .background-clip{
+        width: auto;
+        height: 100%;
+    }
+}

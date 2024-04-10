@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>verification form</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   <script>
+        function validate(){
+        var email = document.getElementById("email");
+        var regx = /^([a-zA-Z0-9\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)?$/
+        
+    if(email.value.match(regx)){
+       
+        swal({
+  title: "Success!",
+  text: "You have provided a valid Email ID",
+  icon: "success",
+  button: "Finish",
+});
+        return true;
+        }
+    else{
+        swal({
+  title: "Sorry!",
+  text: "Invalid Email ID",
+  icon: "error",
+  button: "Retry",
+});
+        return false;
+        }
+    }
+ 
+ /*function validatephoneno(){
+    var phoneno = document.getElementById("phoneno").value;
+    var cleanedphoneno = phoneno.replace(/\D/g, '');
+
+    if(cleanedphoneno.length !==10){
+        alert("Please Enter a 10 digit Phone Number");
+        return false;
+    }
+    if(cleanedphoneno.charAt(0) === '0' || cleanedphoneno.charAt(0) === '1' ){
+        alert("Please enter a valid Phone Number");
+        return false;
+    }
+    if(!/^\d+$/.test(cleanedphoneno)){
+        alert("Please enter a valid Phone Number");
+        return false;
+
+        alert("Phone number is valid");
+        return true;
+    }*/
+
+</script>
+</head>
+<body>
+	<div class="container">
+        <video autoplay loop muted plays-inline class="background-clip">
+            <source src="assets/images/pexels-rostislav-uzunov-5453622 (1080p).mp4" type="video/mp4">
+        </video>
+		<form  onsubmit="">
+        <h2>Email verification</h2>
+		<div class="form1">	
+        <input type="text" id="name" placeholder="username" name="name" required>
+			
+			<input type="email" id="email" placeholder="email" name="email" required>
+        </div>
+			<button onclick="validate()" type="button" class="button">Submit</button>
+        </form>
+
+	</div> 
+
+	
+</body>
+</html>
