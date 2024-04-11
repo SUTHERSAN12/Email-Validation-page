@@ -4,4 +4,4 @@ Email validation in JavaScript is the process of ensuring that an email address 
 
 I created Email validation site using HTML, CSS and javascript with special effects.
 
-Hosted Link: 
+Hosted Link: https://emailvalidation2.netlify.app/
